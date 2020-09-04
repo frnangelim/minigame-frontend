@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-  margin-top: 20px
+  margin-top: 100px
 `;
 
 

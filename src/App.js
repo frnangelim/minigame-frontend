@@ -4,16 +4,21 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import PlayerInfo from "./views/PlayerInfo/PlayerInfo";
 import Home from "./views/Home/Home";
-import Difficulty from "./views/Difficulty/Difficulty";
+import Game from "./views/Game/Game";
+
 
 export default function App() {
     return (
         <Router>
             <div>
                 <Switch>
-                    <Route path="/dificuldade">
-                        <Difficulty />
+                    <Route path="/player">
+                        <PlayerInfo />
+                    </Route>
+                    <Route path="/game">
+                        <Game />
                     </Route>
                     <Route path="/">
                         <Home />
