@@ -7,6 +7,7 @@ import {
 import PlayerInfo from "./views/PlayerInfo/PlayerInfo";
 import Home from "./views/Home/Home";
 import Game from "./views/Game/Game";
+import Ranking from "./views/Ranking/Ranking";
 
 
 export default function App() {
@@ -14,6 +15,9 @@ export default function App() {
         <Router>
             <div>
                 <Switch>
+                    <Route path="/ranking">
+                        <Ranking />
+                    </Route>
                     <Route path="/player">
                         <PlayerInfo />
                     </Route>

@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
+
+import {GameContainer} from './../../style.js';
+
 import {
     Button,
-    Label,
-    Input,
-    FormGroup
 } from 'reactstrap';
-import {GameContainer} from './style.js';
+
 import {useHistory} from "react-router-dom";
 
 function Home() {
@@ -19,8 +19,9 @@ function Home() {
         <GameContainer>
             <br/>
             <legend>Vamos brincar!</legend>
-            <p>Pense em um número e eu tentarei adivinhar o mais rápido possível,
-                se estivermos bastante conectados, podemos entrar para um maravilhoso <a href="/ranking">ranking</a>.</p>
+            <p>Pense em um número de 1 a 1000 e eu tentarei adivinhar o mais rápido possível,
+                se estivermos bastante conectados, podemos entrar para um maravilhoso <a href="/ranking">ranking</a>.
+            </p>
             <p>Será que vamos conseguir?</p>
 
             <Button onClick={nextPage} color={'primary'}>Começar</Button>

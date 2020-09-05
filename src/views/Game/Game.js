@@ -1,53 +1,72 @@
 import React, {useState} from 'react';
-import {
-    Button,
-    Label,
-    Input,
-    FormGroup
-} from 'reactstrap';
-import {GameContainer} from './style.js';
+
+import {GameContainer} from './../../style.js';
+
+import Loader from "react-loader-spinner";
 import {useHistory} from "react-router-dom";
-import Timer from "../../components/Timer/Timer";
+
 import GameResult from "../../components/GameResult/GameResult";
 import GuessGame from "../../components/GuessGame/GuessGame";
+
+import api from '../../services/api';
+import {formatTime} from "../../utils/util";
 
 function Game() {
     let history = useHistory();
     const [gameResult, setGameResult] = useState({gameNumber: 1});
     const [winner, setWinner] = useState(false);
-
-    function onBack(e) {
-        e.preventDefault();
-        history.goBack();
-    }
-
-    function nextPage() {
-        history.push({
-            pathname: '/play',
-            state: {
-                email: history.location.state.email,
-                nickname: history.location.state.nickname
-            }
-        });
-    }
+    const [savingScore, setSavingScore] = useState(false);
 
     function playAgain() {
         setWinner(false);
         setGameResult({...gameResult, gameNumber: gameResult.gameNumber + 1});
     }
 
-    function endGame(time, gameStatus) {
+    async function endGame(time, gameStatus) {
         setWinner(true);
         setGameResult({...gameResult, time, gameStatus});
+        await saveResult(time, gameStatus);
+    }
+
+    async function saveResult(time, gameStatus) {
+        setSavingScore(true);
+        let data = {
+            player: history.location.state.nickname,
+            attempts: gameStatus.guesses,
+            time: formatTime(time),
+            gameNumber: gameResult.gameNumber
+        };
+        await api.post('/score', data);
+        setInterval(() => { // For better UX while running locally
+            setSavingScore(false);
+        }, 1500);
+    }
+
+    function renderGame() {
+        if (winner)
+            return <GameResult result={gameResult} playAgain={playAgain}/>;
+        else
+            return <GuessGame gameNumber={gameResult.gameNumber} endGame={endGame}/>;
     }
 
     return (
         <GameContainer>
-            {winner ?
-                <GameResult result={gameResult} playAgain={playAgain}/>
+            {savingScore ?
+                <>
+                    <legend>Salvando resultado</legend>
+                    <Loader
+                        className="text-center mb-2 mt-2"
+                        type="ThreeDots"
+                        color="#000"
+                        height={64}
+                        width={64}
+                    />
+                </>
+
                 :
-                <GuessGame gameNumber={gameResult.gameNumber} endGame={endGame}/>
+                renderGame()
             }
+
         </GameContainer>
     );
 }

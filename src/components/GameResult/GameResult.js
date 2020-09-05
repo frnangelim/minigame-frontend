@@ -5,15 +5,21 @@ import {
 import {ButtonsContainer} from "./style";
 import GameInfo from "../GameInfo/GameInfo";
 import TimeDisplay from "../TimeDisplay/TimeDisplay";
+import {useHistory} from "react-router-dom";
 
 function GameResult(props) {
+    let history = useHistory();
+
+    function goToRanking() {
+        history.push('/ranking');
+    }
 
     return (
         <div>
             <legend>Conseguimos!!!</legend>
             <div>
                 <legend>O seu número era:</legend>
-                <h1>{props.result.gameStatus.currentGuess}</h1>
+                <h1 style={{color: 'green'}}>{props.result.gameStatus.currentGuess}</h1>
             </div>
 
             <legend>O seu resultado foi:</legend>
@@ -26,7 +32,7 @@ function GameResult(props) {
             </ButtonsContainer>
 
             <ButtonsContainer>
-                <Button color="warning">Finalizar</Button>
+                <Button onClick={goToRanking} color="warning">Finalizar</Button>
             </ButtonsContainer>
         </div>
     );

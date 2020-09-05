@@ -5,12 +5,12 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import {Container, Logo} from "./style";
-import logo from "./assets/logo-scale-system.jpg";
+import ScaleSystems from "./assets/logo-scale-system.jpg";
 
 ReactDOM.render(
   <React.StrictMode>
       <Container>
-          <Logo src={logo} alt="logo"/>
+          <Logo src={ScaleSystems} alt="logo"/>
           <App />
       </Container>
   </React.StrictMode>,

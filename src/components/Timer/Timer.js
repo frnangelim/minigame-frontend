@@ -3,10 +3,12 @@ import TimeDisplay from "../TimeDisplay/TimeDisplay";
 
 function Timer(props) {
     const [time, setTime] = useState({minutes: 0, seconds: 0, ms: 0});
+    const [timerActive, setTimerActive] = useState(false);
 
     useEffect(() => {
         let interval = null;
         if (props.active) {
+            setTimerActive(true);
             interval = setInterval(() => {
                 setTime({
                     minutes: time.seconds >= 60 ? time.minutes + 1 : time.minutes,
@@ -14,7 +16,7 @@ function Timer(props) {
                     ms: time.ms >= 1000 ? 0 : time.ms + 10
                 })
             }, 10);
-        } else if (!props.active && time.seconds !== 0) {
+        } else if (timerActive && !props.active) {
             clearInterval(interval);
             props.onFinish(time);
         }

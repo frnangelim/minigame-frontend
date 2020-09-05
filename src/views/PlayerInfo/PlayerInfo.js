@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-import {GameContainer} from './style.js';
+import {GameContainer} from './../../style.js';
+
 import {
     Input,
     Button,
@@ -10,12 +11,13 @@ import {
     Row,
     Col,
 } from 'reactstrap';
+
 import {useHistory} from "react-router-dom";
 
 function PlayerInfo(props) {
     let history = useHistory();
 
-    const [inputs, setInputs] = useState({email: '', nickname: ''});
+    const [inputs, setInputs] = useState({nickname: ''});
     const [invalidForm, setInvalidForm] = useState(false);
 
     function onInputChange(event) {
@@ -29,7 +31,6 @@ function PlayerInfo(props) {
             history.push({
                 pathname: '/game',
                 state: {
-                    email: inputs.email,
                     nickname: inputs.nickname
                 }
             });
@@ -39,35 +40,24 @@ function PlayerInfo(props) {
     }
 
     function isFormValid() {
-        return validateEmail(inputs.email)
-            && inputs.nickname && inputs.nickname.trim().length > 0;
-    }
-
-    function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+        return inputs.nickname && inputs.nickname.trim().length > 0;
     }
 
     return (
         <GameContainer>
             <Form>
                 <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label for="email">Email</Label>
-                            <Input onChange={onInputChange} value={inputs.email} type="email" name="email" id="email"
-                                   placeholder="Digite o seu Email"/>
-                        </FormGroup>
-                    </Col>
+                    <Col md={3}/>
                     <Col md={6}>
                         <FormGroup>
                             <Label for="nickname">Apelido</Label>
                             <Input onChange={onInputChange} value={inputs.nickname} type="text" name="nickname"
-                                   id="nickname" placeholder="Digite um apelido" required/>
+                                   id="nickname" placeholder="Digite um apelido" maxLength={15} required/>
                         </FormGroup>
                     </Col>
+                    <Col md={3}/>
                 </Row>
-                {invalidForm && <p>Preencha todos os campos corretamente.</p>}
+                {invalidForm && <p>Preencha o seu apelido.</p>}
 
                 <Button onClick={onSubmit} color={'danger'} style={{marginTop: 10}}>Que comecem os jogos!</Button>
             </Form>
