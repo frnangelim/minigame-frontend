@@ -32,7 +32,7 @@ function GameResult(props) {
             </ButtonsContainer>
 
             <ButtonsContainer>
-                <Button onClick={goToRanking} color="danger">Finalizar</Button>
+                <Button style={{width: 150}} onClick={goToRanking} color="danger">Finalizar</Button>
             </ButtonsContainer>
         </div>
     );
