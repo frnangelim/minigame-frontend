@@ -1,22 +1,31 @@
 import styled from 'styled-components';
-import img from './assets/pattern.jpg';
 
-export const Container = styled.div`
+export const ExternalContainer = styled.div`
   text-align: center;
-  // background-image: url(${img});
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #232D2F;
 `;
 
 export const GameContainer = styled.div`
   margin: auto;
   width: 50%;
-  border: 3px solid green;
+  border: 3px solid #F5F0F6;
   padding: 30px;
   margin-top: 80px;
-  margin-bottom: 80px
+  margin-bottom: 150px;
+  background: #F5F0F6;
+  border-radius: 10px;
+  padding-bottom: 80px;
 `;
 
 export const Logo = styled.img`
-  margin-top: 100px
+  margin-bottom: 100px
 `;
 
 

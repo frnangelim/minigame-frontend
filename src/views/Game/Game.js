@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 
-import {GameContainer} from './../../style.js';
-
 import Loader from "react-loader-spinner";
 import {useHistory} from "react-router-dom";
 
@@ -13,7 +11,7 @@ import {formatTime} from "../../utils/util";
 
 function Game() {
     let history = useHistory();
-    const [gameResult, setGameResult] = useState({gameNumber: 1});
+    const [gameResult, setGameResult] = useState({gameNumber: 1, time: {}, gameStatus: {}});
     const [winner, setWinner] = useState(false);
     const [savingScore, setSavingScore] = useState(false);
 
@@ -50,7 +48,7 @@ function Game() {
     }
 
     return (
-        <GameContainer>
+        <div>
             {savingScore ?
                 <>
                     <legend>Salvando resultado</legend>
@@ -62,12 +60,10 @@ function Game() {
                         width={64}
                     />
                 </>
-
                 :
                 renderGame()
             }
-
-        </GameContainer>
+        </div>
     );
 }
 

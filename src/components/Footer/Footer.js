@@ -1,12 +1,18 @@
 import React from 'react';
-import {Button} from "reactstrap";
-import {ButtonsContainer} from "./style";
+import {Container, Icon, Name} from "./style";
+import LinkedIn from '../../assets/linkedIn.webp';
 
-function Footer(props) {
+function Footer() {
+
+    function goToLinkedIn() {
+        window.open('https://www.linkedin.com/in/francisco-angelim-84a1a3104/', '_blank');
+    }
 
     return (
-        <div style={{height: 100}}>
-        </div>
+        <Container onClick={goToLinkedIn}>
+            <Icon src={LinkedIn}/>
+            <Name>Francisco Angelim</Name>
+        </Container>
     );
 }
 

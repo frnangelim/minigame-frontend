@@ -4,15 +4,19 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
-import {Container, Logo} from "./style";
+import {ExternalContainer, GameContainer, Logo} from "./style";
 import ScaleSystems from "./assets/logo-scale-system.jpg";
+import Footer from "./components/Footer/Footer";
 
 ReactDOM.render(
   <React.StrictMode>
-      <Container>
-          <Logo src={ScaleSystems} alt="logo"/>
-          <App />
-      </Container>
+      <ExternalContainer>
+          <GameContainer>
+              <Logo src={ScaleSystems} alt="logo"/>
+              <App />
+          </GameContainer>
+          <Footer/>
+      </ExternalContainer>
   </React.StrictMode>,
   document.getElementById('root')
 );

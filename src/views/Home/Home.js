@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {GameContainer} from './../../style.js';
-
 import {
     Button,
 } from 'reactstrap';
@@ -16,7 +14,7 @@ function Home() {
     }
 
     return (
-        <GameContainer>
+        <div>
             <br/>
             <legend>Vamos brincar!</legend>
             <p>Pense em um número de 1 a 1000 e eu tentarei adivinhar o mais rápido possível,
@@ -24,8 +22,10 @@ function Home() {
             </p>
             <p>Será que vamos conseguir?</p>
 
-            <Button onClick={nextPage} color={'primary'}>Começar</Button>
-        </GameContainer>
+            <br/>
+
+            <Button onClick={nextPage} color={'primary'}>Próximo</Button>
+        </div>
     );
 }
 

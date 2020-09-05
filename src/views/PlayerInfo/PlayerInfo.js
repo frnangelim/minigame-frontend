@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 
-import {GameContainer} from './../../style.js';
-
 import {
     Input,
     Button,
@@ -14,7 +12,7 @@ import {
 
 import {useHistory} from "react-router-dom";
 
-function PlayerInfo(props) {
+function PlayerInfo() {
     let history = useHistory();
 
     const [inputs, setInputs] = useState({nickname: ''});
@@ -44,7 +42,7 @@ function PlayerInfo(props) {
     }
 
     return (
-        <GameContainer>
+        <div>
             <Form>
                 <Row form>
                     <Col md={3}/>
@@ -52,16 +50,17 @@ function PlayerInfo(props) {
                         <FormGroup>
                             <Label for="nickname">Apelido</Label>
                             <Input onChange={onInputChange} value={inputs.nickname} type="text" name="nickname"
-                                   id="nickname" placeholder="Digite um apelido" maxLength={15} required/>
+                                   id="nickname" placeholder="Digite um apelido" maxLength={15} required
+                                   style={{textAlign: 'center'}}/>
                         </FormGroup>
                     </Col>
                     <Col md={3}/>
                 </Row>
                 {invalidForm && <p>Preencha o seu apelido.</p>}
 
-                <Button onClick={onSubmit} color={'danger'} style={{marginTop: 10}}>Que comecem os jogos!</Button>
+                <Button onClick={onSubmit} color={'primary'} style={{marginTop: 10}}>Próximo</Button>
             </Form>
-        </GameContainer>
+        </div>
     );
 }
 
